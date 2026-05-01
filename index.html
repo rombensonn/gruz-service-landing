@@ -1737,9 +1737,53 @@
         display: block;
       }
 
+      .location-shell {
+        padding: 18px;
+        gap: 16px;
+      }
+
+      .location-topline {
+        grid-template-columns: 1fr;
+        padding: 16px;
+      }
+
+      .location-topline h3 {
+        font-size: 25px;
+        line-height: 1.08;
+      }
+
+      .location-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: stretch;
+      }
+
+      .location-actions .btn {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .info-list {
+        grid-template-columns: 1fr;
+      }
+
+      .info-item,
+      .info-item--wide {
+        grid-column: auto;
+        min-height: auto;
+      }
+
       .map-card,
       .map-card iframe {
         min-height: 360px;
+      }
+
+      .map-placeholder {
+        min-height: 360px;
+      }
+
+      .map-meta {
+        grid-template-columns: 1fr;
       }
 
       .lead-form {
@@ -1808,6 +1852,49 @@
       .review-card,
       .info-list {
         padding: 20px;
+      }
+
+      .location-shell {
+        width: 100%;
+        padding: 12px;
+      }
+
+      .location-shell::after {
+        display: none;
+      }
+
+      .location-topline {
+        padding: 18px;
+      }
+
+      .location-topline h3 {
+        font-size: 24px;
+        overflow-wrap: anywhere;
+      }
+
+      .location-topline p {
+        font-size: 15px;
+      }
+
+      .location-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .info-list {
+        padding: 0;
+      }
+
+      .info-item {
+        grid-template-columns: 30px 1fr;
+        padding: 16px;
+      }
+
+      .map-placeholder {
+        padding: 16px;
+      }
+
+      .map-pin-card {
+        padding: 18px;
       }
 
       .mobile-sticky {
