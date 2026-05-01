@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /tmp/
+
+Sitemap: https://rombensonn.github.io/gruz-service-landing/sitemap.xml
+Host: rombensonn.github.io
