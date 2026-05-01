@@ -1,0 +1,2412 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Груз-Сервис — ремонт МКПП, редукторов и мостов в Балашихе | Коммерческий транспорт</title>
+  <meta name="description" content="Ремонт грузовиков Балашиха: ремонт МКПП Газель, редукторов и мостов коммерческого транспорта. Диагностика, гарантия, 1–3 дня.">
+  <meta name="theme-color" content="#1A1D21">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Груз-Сервис — ремонт МКПП, редукторов и мостов в Балашихе">
+  <meta property="og:description" content="Восстанавливаем агрегаты коммерческого транспорта вместо замены в сборе. Газель, ГАЗон, ISUZU, Hyundai HD.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1486006920555-c77dcf18193c?auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:url" content="https://example.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Mono:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1A1D21;
+      --bg-2: #111316;
+      --surface: #252A30;
+      --surface-2: #2D333A;
+      --text: #F2F2F2;
+      --muted: #AEB5BE;
+      --steel: #4A5058;
+      --line: rgba(242, 242, 242, 0.13);
+      --accent: #FF6B1A;
+      --accent-2: #FFB800;
+      --black: #0B0C0E;
+      --white: #FFFFFF;
+      --success: #38D078;
+      --danger: #FF5449;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+      --radius: 8px;
+      --container: 1180px;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", Inter, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      min-width: 320px;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        var(--bg);
+      background-size: 48px 48px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img,
+    iframe {
+      max-width: 100%;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -60px;
+      z-index: 1000;
+      padding: 12px 16px;
+      background: var(--accent);
+      color: var(--black);
+      border-radius: var(--radius);
+      font-weight: 800;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 86px 0;
+      position: relative;
+    }
+
+    .section--tight {
+      padding: 62px 0;
+    }
+
+    .section__head {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 34px;
+      max-width: 780px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      color: var(--accent-2);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      letter-spacing: 0;
+      line-height: 1.08;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      max-width: 1010px;
+      font-weight: 800;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 800;
+    }
+
+    h3 {
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    p,
+    li {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .mono {
+      font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .btn {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      color: var(--black);
+      background: var(--accent);
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+      touch-action: manipulation;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background: var(--accent-2);
+      transform: translateY(-2px);
+    }
+
+    .btn:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    button:focus-visible {
+      outline: 3px solid rgba(255, 184, 0, 0.75);
+      outline-offset: 3px;
+    }
+
+    .btn--outline {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.34);
+    }
+
+    .btn--outline:hover {
+      color: var(--black);
+      border-color: var(--accent-2);
+    }
+
+    .btn--dark {
+      color: var(--text);
+      background: var(--black);
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .btn--dark:hover {
+      color: var(--black);
+    }
+
+    .icon {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      flex: 0 0 auto;
+    }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.11);
+      background: rgba(17, 19, 22, 0.82);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      display: flex;
+      min-height: 72px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .brand__mark {
+      display: inline-grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border-radius: 6px;
+      color: var(--black);
+      background: var(--accent);
+      box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav__links a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.18s ease;
+    }
+
+    .nav__links a:hover {
+      color: var(--text);
+    }
+
+    .nav__phone {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius);
+      font-weight: 900;
+      color: var(--text);
+      white-space: nowrap;
+      transition: border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .nav__phone:hover {
+      color: var(--accent-2);
+      border-color: var(--accent-2);
+    }
+
+    .hero {
+      min-height: 92dvh;
+      display: flex;
+      align-items: end;
+      padding: 126px 0 62px;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      background-image:
+        linear-gradient(90deg, rgba(11, 12, 14, 0.83) 0%, rgba(11, 12, 14, 0.64) 48%, rgba(11, 12, 14, 0.42) 100%),
+        linear-gradient(0deg, rgba(26, 29, 33, 0.9), rgba(26, 29, 33, 0.14) 38%),
+        url("https://images.unsplash.com/photo-1486006920555-c77dcf18193c?auto=format&fit=crop&w=2200&q=82");
+      background-position: center;
+      background-size: cover;
+      filter: saturate(0.72) contrast(1.08);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(115deg, rgba(255, 107, 26, 0.18), transparent 38%),
+        repeating-linear-gradient(135deg, rgba(255, 184, 0, 0.08) 0 2px, transparent 2px 14px);
+      opacity: 0.7;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .hero__content {
+      display: grid;
+      gap: 24px;
+      max-width: 1040px;
+    }
+
+    .hero__lead {
+      max-width: 760px;
+      color: #E8ECEF;
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.52;
+    }
+
+    .hero__trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: #D8DEE5;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .hero__trust span {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero__trust span:not(:last-child)::after {
+      content: "";
+      width: 5px;
+      height: 5px;
+      background: var(--accent-2);
+      display: inline-block;
+      transform: rotate(45deg);
+    }
+
+    .hero__cta {
+      display: grid;
+      gap: 13px;
+      margin-top: 4px;
+    }
+
+    .cta-note {
+      color: var(--accent-2);
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero__stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 760px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      min-height: 96px;
+      padding: 17px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: var(--radius);
+      background: rgba(17, 19, 22, 0.62);
+      backdrop-filter: blur(10px);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--text);
+      font-family: "Roboto Mono", ui-monospace, monospace;
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      margin-top: 6px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      position: relative;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025));
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), rgba(255, 184, 0, 0));
+      border-radius: var(--radius) var(--radius) 0 0;
+      opacity: 0.86;
+    }
+
+    .card__icon {
+      display: inline-grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      margin-bottom: 18px;
+      border: 1px solid rgba(255, 184, 0, 0.32);
+      border-radius: 6px;
+      color: var(--accent-2);
+      background: rgba(255, 184, 0, 0.08);
+    }
+
+    .card p {
+      margin-top: 12px;
+      font-size: 16px;
+    }
+
+    .services {
+      background: var(--bg-2);
+      border-block: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .service-focus {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .service-card {
+      min-height: 188px;
+      display: grid;
+      align-content: space-between;
+      gap: 20px;
+      padding: 20px;
+      border: 1px solid rgba(255, 107, 26, 0.28);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(145deg, rgba(255, 107, 26, 0.16), rgba(255, 184, 0, 0.035)),
+        var(--surface);
+    }
+
+    .service-card .icon {
+      width: 34px;
+      height: 34px;
+      color: var(--accent);
+    }
+
+    .service-card strong {
+      display: block;
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .price {
+      display: inline-flex;
+      width: fit-content;
+      padding: 6px 9px;
+      border-radius: 6px;
+      color: var(--black);
+      background: var(--accent-2);
+      font-family: "Roboto Mono", ui-monospace, monospace;
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .service-cycle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 24px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.04);
+      list-style: none;
+      margin: 0;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    .check {
+      display: inline-grid;
+      place-items: center;
+      width: 23px;
+      height: 23px;
+      flex: 0 0 auto;
+      margin-top: 2px;
+      border-radius: 5px;
+      color: var(--black);
+      background: var(--accent);
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .anchor-text {
+      margin-top: 22px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      background: rgba(255, 107, 26, 0.08);
+      color: #E6E9ED;
+      font-weight: 750;
+    }
+
+    .anchor-text a {
+      color: var(--accent-2);
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+
+    .brands-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .brand-tile {
+      min-height: 88px;
+      display: grid;
+      place-items: center;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025));
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .brand-tile small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      counter-reset: steps;
+    }
+
+    .step {
+      min-height: 250px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      counter-increment: steps;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step::before {
+      content: counter(steps, decimal-leading-zero);
+      display: block;
+      color: var(--accent);
+      font-family: "Roboto Mono", ui-monospace, monospace;
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 30px;
+    }
+
+    .step::after {
+      content: "";
+      position: absolute;
+      top: 46px;
+      right: -28px;
+      width: 112px;
+      height: 1px;
+      background: rgba(255, 184, 0, 0.4);
+      transform: rotate(-24deg);
+    }
+
+    .step p {
+      margin-top: 12px;
+      font-size: 16px;
+    }
+
+    .prices {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0)),
+        var(--bg);
+    }
+
+    .price-table {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .price-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(220px, 0.7fr);
+      gap: 18px;
+      align-items: center;
+      min-height: 62px;
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .price-row:last-child {
+      border-bottom: 0;
+    }
+
+    .price-row span:first-child {
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 750;
+    }
+
+    .price-row span:last-child {
+      color: var(--accent-2);
+      font-family: "Roboto Mono", ui-monospace, monospace;
+      font-size: 15px;
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .payment {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-top: 18px;
+      padding: 20px;
+      border-radius: var(--radius);
+      background: var(--accent);
+      color: var(--black);
+      font-weight: 750;
+    }
+
+    .payment p,
+    .payment strong {
+      color: var(--black);
+    }
+
+    .reviews {
+      background: var(--bg-2);
+      border-block: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .review-card {
+      display: grid;
+      gap: 16px;
+      min-height: 260px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .review-card blockquote {
+      margin: 0;
+      color: #EDF1F5;
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .review-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .review-author {
+      color: var(--text);
+      font-weight: 900;
+    }
+
+    .yandex-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 9px;
+      border: 1px solid rgba(255, 184, 0, 0.36);
+      border-radius: 999px;
+      color: var(--accent-2);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .reviews-action {
+      margin-top: 20px;
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.83fr) minmax(0, 1.17fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 14px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .info-item {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .info-item:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .info-item .icon {
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    .info-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 15px;
+      margin-bottom: 3px;
+    }
+
+    .info-item span,
+    .info-item a {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .info-item a {
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 184, 0, 0.5);
+      text-underline-offset: 4px;
+    }
+
+    .map-card {
+      min-height: 440px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .map-card iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 440px;
+      border: 0;
+      filter: grayscale(0.15) contrast(1.03);
+    }
+
+    .final-cta {
+      padding: 82px 0;
+      background:
+        linear-gradient(180deg, rgba(255, 107, 26, 0.08), rgba(255, 107, 26, 0)),
+        var(--bg-2);
+      border-block: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .final-cta__shell {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+      gap: 30px;
+      align-items: stretch;
+      padding: 34px;
+      border: 1px solid rgba(255, 184, 0, 0.26);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(90deg, rgba(255, 107, 26, 0.18), transparent 48%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
+        var(--surface);
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .final-cta__shell::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 8px;
+      background: repeating-linear-gradient(
+        135deg,
+        var(--accent-2) 0 16px,
+        var(--black) 16px 28px
+      );
+      z-index: -1;
+    }
+
+    .final-cta__shell::after {
+      content: "";
+      position: absolute;
+      right: -42px;
+      bottom: -72px;
+      width: 240px;
+      height: 240px;
+      border: 1px solid rgba(255, 184, 0, 0.18);
+      transform: rotate(18deg);
+      z-index: -1;
+    }
+
+    .final-cta__copy {
+      display: grid;
+      align-content: center;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .final-cta__kicker {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 11px;
+      border: 1px solid rgba(255, 184, 0, 0.34);
+      border-radius: 6px;
+      color: var(--accent-2);
+      background: rgba(255, 184, 0, 0.08);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .final-cta h2 {
+      max-width: 810px;
+      color: var(--text);
+      font-size: clamp(30px, 4.1vw, 52px);
+      line-height: 1.06;
+    }
+
+    .final-cta p {
+      max-width: 700px;
+      color: #D8DEE5;
+      font-size: 18px;
+      font-weight: 650;
+      line-height: 1.58;
+    }
+
+    .final-cta__metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 760px;
+      margin-top: 4px;
+    }
+
+    .final-cta__metric {
+      min-height: 82px;
+      padding: 13px 14px;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .final-cta__metric strong {
+      display: block;
+      color: var(--accent-2);
+      font-family: "Roboto Mono", ui-monospace, monospace;
+      font-size: 20px;
+      line-height: 1.15;
+    }
+
+    .final-cta__metric span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .final-cta__actions {
+      display: grid;
+      align-content: center;
+      gap: 14px;
+      padding: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: var(--radius);
+      background: rgba(12, 14, 17, 0.82);
+    }
+
+    .final-cta__actions .btn {
+      width: 100%;
+      min-height: 58px;
+      justify-content: center;
+    }
+
+    .final-cta__actions .btn--dark {
+      color: var(--black);
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .final-cta__actions .btn--dark:hover {
+      background: var(--accent-2);
+      border-color: var(--accent-2);
+    }
+
+    .final-cta__actions .btn--outline {
+      color: var(--text);
+      background: transparent;
+      border-color: rgba(255, 255, 255, 0.36);
+    }
+
+    .final-cta__actions .btn--outline:hover {
+      color: var(--black);
+      background: var(--accent-2);
+      border-color: var(--accent-2);
+    }
+
+    .final-cta__hint {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding-top: 4px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .final-cta__hint .icon {
+      width: 19px;
+      height: 19px;
+      color: var(--success);
+      margin-top: 1px;
+    }
+
+    .form-section {
+      background: var(--bg-2);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .lead-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      max-width: 840px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field--wide {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius);
+      background: #171A1E;
+      color: var(--text);
+      padding: 14px 14px;
+      min-height: 52px;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    textarea {
+      min-height: 132px;
+      resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #7F8791;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent-2);
+      box-shadow: 0 0 0 4px rgba(255, 184, 0, 0.12);
+      outline: 0;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      grid-column: 1 / -1;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .form-note {
+      grid-column: 1 / -1;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .consent-group {
+      grid-column: 1 / -1;
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .consent-check {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 11px;
+      align-items: start;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.5;
+    }
+
+    .consent-check input {
+      width: 20px;
+      height: 20px;
+      min-height: auto;
+      margin: 2px 0 0;
+      accent-color: var(--accent);
+    }
+
+    .consent-check a,
+    .legal-link {
+      color: var(--accent-2);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    button.legal-link {
+      width: fit-content;
+      min-height: 28px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
+    }
+
+    .consent-error {
+      color: var(--danger);
+      font-size: 13px;
+      font-weight: 800;
+      min-height: 20px;
+    }
+
+    .form-status {
+      color: var(--accent-2);
+      font-size: 14px;
+      font-weight: 800;
+      min-height: 22px;
+    }
+
+    .footer {
+      padding: 54px 0 118px;
+      color: var(--muted);
+      background:
+        linear-gradient(180deg, rgba(255, 107, 26, 0.06), rgba(255, 107, 26, 0)),
+        #0E1013;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 14px;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.9fr 1.15fr 1.2fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .footer__col {
+      display: grid;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .footer h2,
+    .footer h3 {
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.25;
+    }
+
+    .footer p,
+    .footer li,
+    .footer a,
+    .footer small {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .footer a {
+      min-height: 28px;
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      transition: color 0.18s ease;
+    }
+
+    .footer a:hover {
+      color: var(--accent-2);
+    }
+
+    .footer__links,
+    .footer__details {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .footer__details strong {
+      color: #D8DEE5;
+      font-weight: 800;
+    }
+
+    .footer__bottom {
+      display: grid;
+      gap: 8px;
+      margin-top: 32px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer__bottom p {
+      max-width: 980px;
+      font-size: 13px;
+    }
+
+    .legal-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: none;
+      padding: 24px;
+      background: rgba(7, 8, 10, 0.78);
+      backdrop-filter: blur(10px);
+      overflow-y: auto;
+    }
+
+    .legal-modal.is-open {
+      display: grid;
+      place-items: start center;
+    }
+
+    .legal-modal__dialog {
+      width: min(920px, 100%);
+      max-height: calc(100dvh - 48px);
+      overflow: auto;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius);
+      background: var(--bg);
+      box-shadow: var(--shadow);
+    }
+
+    .legal-modal__top {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(26, 29, 33, 0.96);
+    }
+
+    .legal-modal__top h2 {
+      font-size: 22px;
+    }
+
+    .legal-modal__close {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+    }
+
+    .legal-doc {
+      display: none;
+      padding: 24px;
+    }
+
+    .legal-doc.is-active {
+      display: grid;
+      gap: 16px;
+    }
+
+    .legal-doc h3 {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    .legal-doc ul {
+      display: grid;
+      gap: 7px;
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .legal-doc li,
+    .legal-doc p {
+      font-size: 15px;
+      color: #D8DEE5;
+    }
+
+    .cookie-banner {
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: calc(16px + var(--safe-bottom));
+      z-index: 260;
+      display: none;
+      max-width: 980px;
+      margin-inline: auto;
+      padding: 18px;
+      border: 1px solid rgba(255, 184, 0, 0.28);
+      border-radius: var(--radius);
+      background: rgba(17, 19, 22, 0.96);
+      box-shadow: var(--shadow);
+    }
+
+    .cookie-banner.is-visible {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .cookie-banner p {
+      font-size: 14px;
+      color: #D8DEE5;
+    }
+
+    .cookie-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .cookie-actions .btn {
+      min-height: 44px;
+      padding: 10px 13px;
+      font-size: 13px;
+    }
+
+    .cookie-settings {
+      display: none;
+      grid-column: 1 / -1;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .cookie-banner.is-settings .cookie-settings {
+      display: grid;
+      gap: 12px;
+    }
+
+    .mobile-sticky {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 120;
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 10px 12px calc(10px + var(--safe-bottom));
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(14, 16, 19, 0.94);
+      backdrop-filter: blur(16px);
+    }
+
+    .mobile-sticky .btn {
+      min-height: 50px;
+      padding: 12px 10px;
+      font-size: 14px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1060px) {
+      .nav__links {
+        display: none;
+      }
+
+      .service-focus {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .brands-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .steps,
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .final-cta__shell {
+        grid-template-columns: 1fr;
+      }
+
+      .final-cta__actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: center;
+      }
+
+      .final-cta__hint {
+        grid-column: 1 / -1;
+      }
+
+      .footer__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 24px, var(--container));
+      }
+
+      .section {
+        padding: 58px 0;
+      }
+
+      .site-header {
+        position: absolute;
+      }
+
+      .nav {
+        min-height: 66px;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      .nav__phone {
+        display: none;
+      }
+
+      .hero {
+        min-height: 100dvh;
+        padding: 98px 0 46px;
+      }
+
+      .hero__trust span:not(:last-child)::after {
+        display: none;
+      }
+
+      .cta-row,
+      .form-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .hero__stats,
+      .grid-3,
+      .service-focus,
+      .steps,
+      .location-grid,
+      .lead-form {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card {
+        min-height: 156px;
+      }
+
+      .service-cycle {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+
+      .brands-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .brand-tile {
+        min-height: 78px;
+        font-size: 16px;
+      }
+
+      .price-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .price-row span:last-child {
+        text-align: left;
+      }
+
+      .payment {
+        display: block;
+      }
+
+      .map-card,
+      .map-card iframe {
+        min-height: 360px;
+      }
+
+      .lead-form {
+        padding: 18px;
+      }
+
+      .final-cta {
+        padding: 58px 0;
+      }
+
+      .final-cta__shell {
+        padding: 24px 18px;
+        gap: 22px;
+      }
+
+      .final-cta__metrics,
+      .final-cta__actions {
+        grid-template-columns: 1fr;
+      }
+
+      .final-cta p {
+        font-size: 16px;
+      }
+
+      .footer {
+        padding-top: 42px;
+      }
+
+      .footer__grid,
+      .cookie-banner.is-visible {
+        grid-template-columns: 1fr;
+      }
+
+      .cookie-actions {
+        justify-content: stretch;
+      }
+
+      .cookie-actions .btn {
+        flex: 1 1 150px;
+      }
+
+      .mobile-sticky {
+        display: grid;
+      }
+
+      .footer {
+        padding-bottom: 104px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      h1 {
+        font-size: 34px;
+      }
+
+      h2 {
+        font-size: 29px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .card,
+      .step,
+      .review-card,
+      .info-list {
+        padding: 20px;
+      }
+
+      .mobile-sticky {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+
+  <!-- Яндекс Метрика загружается только после согласия на аналитические cookies. См. loadYandexMetrika() внизу страницы. -->
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <header class="site-header" aria-label="Верхняя навигация">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Груз-Сервис, на главный экран">
+        <span class="brand__mark" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5 5L3 18l3 3 6.7-6.7a4 4 0 0 0 5-5l-2.2 2.2-3-3 2.2-2.2Z"></path></svg>
+        </span>
+        Груз-Сервис
+      </a>
+      <nav class="nav__links" aria-label="Разделы сайта">
+        <a href="#difference">Отличия</a>
+        <a href="#services">Услуги</a>
+        <a href="#prices">Цены</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <a class="nav__phone js-goal-phone" href="tel:+79145690555" aria-label="Позвонить мастеру">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9Z"></path></svg>
+        +7 (914) 569-05-55
+      </a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="top" class="hero">
+      <div class="container hero__content">
+        <span class="eyebrow">Балашиха · мкр. Саввино · бокс 10</span>
+        <h1>Ремонт МКПП, редукторов и задних мостов коммерческого транспорта в Балашихе</h1>
+        <p class="hero__lead">Восстанавливаем агрегаты вместо замены в сборе. Возвращаем Газели, ГАЗоны и ISUZU в работу за 1–3 дня. Гарантия на каждую работу.</p>
+        <div class="hero__trust" aria-label="Триггеры доверия">
+          <span>Опыт мастеров от 5 лет</span>
+          <span>Нормочас от 1000 ₽</span>
+          <span>Работаем 7 дней в неделю с 10:00 до 20:00</span>
+        </div>
+        <div class="hero__cta">
+          <p class="cta-note">Бесплатная диагностика трансмиссии при ремонте у нас</p>
+          <div class="cta-row">
+            <a class="btn" href="#lead-form">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6"></path><path d="M10 14 20 4"></path><path d="M20 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4"></path></svg>
+              Записаться на диагностику
+            </a>
+            <a class="btn btn--outline js-goal-phone" href="tel:+79145690555">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9Z"></path></svg>
+              Позвонить мастеру: +7 (914) 569-05-55
+            </a>
+          </div>
+        </div>
+        <div class="hero__stats" aria-label="Ключевые цифры">
+          <div class="stat"><strong>1–3 дня</strong><span>на типовой ремонт МКПП, мостов и редукторов</span></div>
+          <div class="stat"><strong>25–60 тыс.</strong><span>часто дешевле замены моста в сборе</span></div>
+          <div class="stat"><strong>7/7</strong><span>ежедневно, чтобы машина меньше стояла</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="difference" class="section">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Не общий СТО</span>
+          <h2>Почему сюда едут даже из Москвы</h2>
+        </div>
+        <div class="grid-3">
+          <article class="card reveal">
+            <span class="card__icon"><svg class="icon" viewBox="0 0 24 24"><path d="M3 13h18"></path><path d="M5 13v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"></path><path d="M7 13V8l5-4 5 4v5"></path><path d="M9 20v-4h6v4"></path></svg></span>
+            <h3>Чиним то, от чего отказываются другие</h3>
+            <p>Восстанавливаем задние мосты и чулки на коммерческой технике. Большинство сервисов меняют их в сборе за 80–150 тысяч — мы ремонтируем за 25–60 тысяч с гарантией.</p>
+          </article>
+          <article class="card reveal">
+            <span class="card__icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2a2 2 0 0 1-4 0V22a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1A2 2 0 1 1 4.2 18l.1-.1A1.7 1.7 0 0 0 4.6 16a1.7 1.7 0 0 0-1.6-1H2.8a2 2 0 0 1 0-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 8A2 2 0 1 1 7 5.2l.1.1a1.7 1.7 0 0 0 1.9.3h.1A1.7 1.7 0 0 0 10 4V3.8a2 2 0 0 1 4 0V4a1.7 1.7 0 0 0 1 1.6h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1A2 2 0 1 1 19.8 8l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1A1.7 1.7 0 0 0 21 11h.2a2 2 0 0 1 0 4H21a1.7 1.7 0 0 0-1.6 1Z"></path></svg></span>
+            <h3>Узкая специализация по трансмиссии</h3>
+            <p>МКПП, редукторы, мосты, сцепление — это 70% наших заказов. Не «универсальный СТО», а профильная мастерская: знаем все болячки Газелей, ГАЗонов, ISUZU и Hyundai HD.</p>
+          </article>
+          <article class="card reveal">
+            <span class="card__icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"></path></svg></span>
+            <h3>Прозрачная цена до начала ремонта</h3>
+            <p>После диагностики вы получаете полный список работ и запчастей с ценами. Без «довесков» в процессе. Согласовываем каждый шаг.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section services">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Работы и цены</span>
+          <h2>Что мы делаем</h2>
+          <p>От диагностики до сложного ремонта трансмиссии — всё в одном цеху на Промышленной, 44.</p>
+        </div>
+
+        <div class="service-focus" aria-label="Главная специализация">
+          <article class="service-card reveal">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16"></path><path d="M7 12v6"></path><path d="M17 12v6"></path><path d="M9 6h6v6H9z"></path><path d="M12 6V3"></path></svg>
+            <div><strong>Ремонт МКПП</strong><span class="price">от 8 000 ₽</span></div>
+          </article>
+          <article class="service-card reveal">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><path d="M12 2v3"></path><path d="M12 19v3"></path><path d="m4.9 4.9 2.1 2.1"></path><path d="m17 17 2.1 2.1"></path><path d="M2 12h3"></path><path d="M19 12h3"></path><path d="m4.9 19.1 2.1-2.1"></path><path d="m17 7 2.1-2.1"></path></svg>
+            <div><strong>Ремонт редукторов</strong><span class="price">от 6 000 ₽</span></div>
+          </article>
+          <article class="service-card reveal">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h18"></path><path d="M6 13v4"></path><path d="M18 13v4"></path><path d="M8 17h8"></path><path d="M7 9h10l2 4H5l2-4Z"></path><path d="M10 9V6h4v3"></path></svg>
+            <div><strong>Восстановление задних мостов</strong><span class="price">от 12 000 ₽</span></div>
+          </article>
+          <article class="service-card reveal">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h8l4 6-4 6H8l-4-6 4-6Z"></path><path d="M10 9h4"></path><path d="M9 12h6"></path><path d="M10 15h4"></path></svg>
+            <div><strong>Замена агрегатов в сборе</strong><span class="price">от 5 000 ₽</span></div>
+          </article>
+          <article class="service-card reveal">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8a7 7 0 1 0 10 0"></path><path d="M12 2v10"></path><path d="M9 5h6"></path></svg>
+            <div><strong>Ремонт сцепления</strong><span class="price">от 4 500 ₽</span></div>
+          </article>
+        </div>
+
+        <ul class="service-cycle reveal" aria-label="Полный сервисный цикл">
+          <li class="check-item"><span class="check">✓</span>Ремонт двигателя и ГБЦ</li>
+          <li class="check-item"><span class="check">✓</span>Замена ГРМ</li>
+          <li class="check-item"><span class="check">✓</span>Раскоксовка</li>
+          <li class="check-item"><span class="check">✓</span>Чистка форсунок</li>
+          <li class="check-item"><span class="check">✓</span>Эндоскопия двигателя</li>
+          <li class="check-item"><span class="check">✓</span>Ремонт топливной системы</li>
+          <li class="check-item"><span class="check">✓</span>Ремонт пневмосистемы</li>
+          <li class="check-item"><span class="check">✓</span>Ремонт ходовой части</li>
+          <li class="check-item"><span class="check">✓</span>Ремонт тормозной системы</li>
+          <li class="check-item"><span class="check">✓</span>Ремонт амортизаторов</li>
+          <li class="check-item"><span class="check">✓</span>Ремонт стартеров и генераторов</li>
+          <li class="check-item"><span class="check">✓</span>Замена масла (грузовое/легковое)</li>
+          <li class="check-item"><span class="check">✓</span>Компьютерная диагностика</li>
+          <li class="check-item"><span class="check">✓</span>Сварочные работы</li>
+          <li class="check-item"><span class="check">✓</span>Предрейсовый техосмотр</li>
+          <li class="check-item"><span class="check">✓</span>Запчасти под заказ</li>
+        </ul>
+
+        <p class="anchor-text reveal">Не нашли свою задачу? Позвоните мастеру: <a class="js-goal-phone" href="tel:+79145690555">+7 (914) 569-05-55</a> — скажем по телефону, беремся ли и сколько будет стоить.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Марки и модели</span>
+          <h2>Профильно работаем с коммерческим транспортом</h2>
+        </div>
+        <div class="brands-grid reveal" aria-label="Список техники">
+          <div class="brand-tile">ГАЗ<small>Газель · ГАЗон · Соболь</small></div>
+          <div class="brand-tile">УАЗ</div>
+          <div class="brand-tile">ISUZU</div>
+          <div class="brand-tile">Hyundai HD</div>
+          <div class="brand-tile">Foton</div>
+          <div class="brand-tile">Hino</div>
+          <div class="brand-tile">JAC</div>
+          <div class="brand-tile">Valdai</div>
+          <div class="brand-tile">ГАЗель Next</div>
+          <div class="brand-tile">IVECO Daily</div>
+          <div class="brand-tile">Легковые авто</div>
+          <div class="brand-tile">Дизель</div>
+        </div>
+        <p class="note reveal">Если вашей марки нет в списке — позвоните, скорее всего тоже возьмёмся. Главное — это коммерческая техника или дизель.</p>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Без лотереи</span>
+          <h2>Как проходит ремонт</h2>
+        </div>
+        <div class="steps">
+          <article class="step reveal">
+            <h3>Заявка или приезд</h3>
+            <p>Звоните или приезжаете на Промышленную, 44. Можно записаться заранее.</p>
+          </article>
+          <article class="step reveal">
+            <h3>Бесплатная диагностика</h3>
+            <p>Мастер осматривает узел и называет причину. При ремонте у нас диагностика бесплатная.</p>
+          </article>
+          <article class="step reveal">
+            <h3>Согласование сметы</h3>
+            <p>Высылаем список работ и запчастей с ценами. Не приступаем, пока вы не подтвердите.</p>
+          </article>
+          <article class="step reveal">
+            <h3>Ремонт и выдача</h3>
+            <p>Стандартные работы за 1 день, ремонт мостов и МКПП — 1–3 дня. Даём гарантию.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="prices" class="section prices">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Ориентир до приезда</span>
+          <h2>Сколько это стоит</h2>
+          <p>Нормочас работы — 1000–1500 ₽. Ниже — ориентир по самым частым работам. Точную сумму называем после диагностики.</p>
+        </div>
+        <div class="price-table reveal" role="table" aria-label="Цены на частые работы">
+          <div class="price-row" role="row"><span role="cell">Диагностика трансмиссии</span><span role="cell">бесплатно при ремонте / 1500 ₽ отдельно</span></div>
+          <div class="price-row" role="row"><span role="cell">Ремонт МКПП Газель</span><span role="cell">от 8 000 ₽ (работа)</span></div>
+          <div class="price-row" role="row"><span role="cell">Ремонт редуктора</span><span role="cell">от 6 000 ₽ (работа)</span></div>
+          <div class="price-row" role="row"><span role="cell">Восстановление чулка заднего моста</span><span role="cell">от 12 000 ₽</span></div>
+          <div class="price-row" role="row"><span role="cell">Замена сцепления Газель</span><span role="cell">от 7 000 ₽ (работа)</span></div>
+          <div class="price-row" role="row"><span role="cell">Замена масла в МКПП</span><span role="cell">от 1 500 ₽</span></div>
+          <div class="price-row" role="row"><span role="cell">Компьютерная диагностика</span><span role="cell">от 1 500 ₽</span></div>
+          <div class="price-row" role="row"><span role="cell">Замена ГРМ</span><span role="cell">от 6 000 ₽</span></div>
+        </div>
+        <div class="payment reveal">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2Z"></path><path d="M2 10h20"></path></svg>
+          <p><strong>Способы оплаты:</strong> карта, наличные, безналичный расчёт, банковский перевод, предоплата. Работаем с ИП и юрлицами с закрывающими документами.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews" class="section reviews">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Рейтинг 4,2 на Яндекс Картах</span>
+          <h2>Что говорят те, кто уже у нас был</h2>
+        </div>
+        <div class="grid-3">
+          <article class="review-card reveal">
+            <blockquote>«Очень хороший автосервис! Ребята молодцы! Уважение и респект им за качественную работу! Приехал на Газели с проблемой — задний мост начал сильно люфтить и посторонние звуки издавать…»</blockquote>
+            <div class="review-meta">
+              <span class="review-author">Андрей Котов</span>
+              <span class="yandex-badge">Я · Отзыв с Яндекс Карт</span>
+            </div>
+          </article>
+          <article class="review-card reveal">
+            <blockquote>«Отличное обслуживание. Быстрое, качественное. Ребята отличные, молодцы. Рекомендую.»</blockquote>
+            <div class="review-meta">
+              <span class="review-author">Ола А.</span>
+              <span class="yandex-badge">Я · Отзыв с Яндекс Карт</span>
+            </div>
+          </article>
+          <article class="review-card reveal">
+            <blockquote>«Отличный сервис!»</blockquote>
+            <div class="review-meta">
+              <span class="review-author">Nik Kar</span>
+              <span class="yandex-badge">Я · Отзыв с Яндекс Карт</span>
+            </div>
+          </article>
+        </div>
+        <div class="reviews-action reveal">
+          <a class="btn btn--outline" href="https://yandex.ru/maps/?text=%D0%93%D1%80%D1%83%D0%B7-%D0%A1%D0%B5%D1%80%D0%B2%D0%B8%D1%81%20%D0%91%D0%B0%D0%BB%D0%B0%D1%88%D0%B8%D1%85%D0%B0%20%D0%9F%D1%80%D0%BE%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F%2044" target="_blank" rel="noopener">Смотреть все отзывы на Яндекс Картах →</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts" class="section">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Адрес и маршрут</span>
+          <h2>Где нас найти</h2>
+        </div>
+        <div class="location-grid">
+          <div class="info-list reveal">
+            <div class="info-item">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <div><strong>Адрес</strong><span>Балашиха, мкр. Саввино, ул. Промышленная, 44, бокс 10</span></div>
+            </div>
+            <div class="info-item">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18"></path><path d="M6 12V8l6-4 6 4v4"></path><path d="M7 12v8"></path><path d="M17 12v8"></path></svg>
+              <div><strong>Ориентир</strong><span>730 м от завода «Трубопласт»</span></div>
+            </div>
+            <div class="info-item">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9Z"></path></svg>
+              <div><strong>Телефон</strong><a class="js-goal-phone" href="tel:+79145690555">+7 (914) 569-05-55</a></div>
+            </div>
+            <div class="info-item">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+              <div><strong>Режим работы</strong><span>ежедневно с 10:00 до 20:00</span></div>
+            </div>
+            <div class="info-item">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17h4"></path><path d="M2 17h3"></path><path d="M19 17h3"></path><path d="M5 17l2-8h10l2 8"></path><path d="M7 9l2-4h6l2 4"></path></svg>
+              <div><strong>Парковка</strong><span>есть, въезд на грузовике без проблем</span></div>
+            </div>
+            <div class="info-item">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13a10 10 0 0 1 14 0"></path><path d="M8.5 16.5a5 5 0 0 1 7 0"></path><path d="M2 9a15 15 0 0 1 20 0"></path><path d="M12 20h.01"></path></svg>
+              <div><strong>Для водителей дальнобоев</strong><span>Wi-Fi, туалет, можно подождать в комфорте</span></div>
+            </div>
+            <a class="btn js-goal-route" href="https://yandex.ru/maps/?rtext=~55.7218,38.0242&rtt=auto&text=%D0%91%D0%B0%D0%BB%D0%B0%D1%88%D0%B8%D1%85%D0%B0%2C%20%D0%BC%D0%BA%D1%80.%20%D0%A1%D0%B0%D0%B2%D0%B2%D0%B8%D0%BD%D0%BE%2C%20%D1%83%D0%BB.%20%D0%9F%D1%80%D0%BE%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F%2C%2044" target="_blank" rel="noopener">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 19-9-9 19-2-8-8-2Z"></path></svg>
+              Построить маршрут
+            </a>
+          </div>
+          <div class="map-card reveal" aria-label="Яндекс Карта с адресом сервиса">
+            <iframe title="Груз-Сервис на Яндекс Картах" src="https://yandex.ru/map-widget/v1/?ll=38.024200%2C55.721800&z=16&mode=search&text=%D0%91%D0%B0%D0%BB%D0%B0%D1%88%D0%B8%D1%85%D0%B0%2C%20%D0%BC%D0%BA%D1%80.%20%D0%A1%D0%B0%D0%B2%D0%B2%D0%B8%D0%BD%D0%BD%D0%BE%2C%20%D1%83%D0%BB.%20%D0%9F%D1%80%D0%BE%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F%2C%2044%2C%20%D0%B1%D0%BE%D0%BA%D1%81%2010" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="container">
+        <div class="final-cta__shell">
+          <div class="final-cta__copy">
+            <span class="final-cta__kicker">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.3 21H5a2 2 0 0 1-2-2v-5.3a2 2 0 0 1 .6-1.4L14.9 1 23 9.1 11.7 20.4a2 2 0 0 1-1.4.6Z"></path><path d="m13 3 8 8"></path></svg>
+              Срочная диагностика трансмиссии
+            </span>
+            <h2>Каждый день простоя съедает выручку. Вернём Газель, ГАЗон или ISUZU в работу быстрее.</h2>
+            <p>Расскажите, что случилось с МКПП, мостом или редуктором. Мастер сразу скажет, берёмся ли мы, сколько займёт ремонт и в какую сумму ориентироваться.</p>
+            <div class="final-cta__metrics" aria-label="Почему стоит позвонить сейчас">
+              <div class="final-cta__metric"><strong>5–15 тыс. ₽</strong><span>обычная потеря за день простоя</span></div>
+              <div class="final-cta__metric"><strong>1–3 дня</strong><span>типовой срок по мостам и МКПП</span></div>
+              <div class="final-cta__metric"><strong>до сметы</strong><span>не начинаем ремонт без согласования</span></div>
+            </div>
+          </div>
+          <div class="final-cta__actions" aria-label="Связаться с мастером">
+            <a class="btn btn--dark js-goal-phone" href="tel:+79145690555">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9Z"></path></svg>
+              Позвонить: +7 (914) 569-05-55
+            </a>
+            <a class="btn btn--outline" href="#lead-form">Оставить заявку</a>
+            <div class="final-cta__hint">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+              <span>Перезваниваем за 15 минут в рабочее время. Без рассылок и лишних разговоров.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section form-section" aria-labelledby="form-title">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Заявка мастеру</span>
+          <h2 id="form-title">Опишите, что с машиной</h2>
+          <p>Чем конкретнее симптом, тем быстрее мастер сориентирует по срокам и цене.</p>
+        </div>
+
+        <form id="lead-form" class="lead-form reveal" action="/api/lead" method="POST">
+          <div class="field">
+            <label for="name">Имя</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="phone">Телефон</label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 ___ ___-__-__" required>
+          </div>
+          <div class="field field--wide">
+            <label for="message">Что с машиной</label>
+            <textarea id="message" name="message" placeholder="Например: Газель, люфтит задний мост, гул на скорости" required></textarea>
+          </div>
+          <input type="hidden" name="source" value="Лендинг Груз-Сервис">
+          <input type="hidden" name="form_id" value="lead-form">
+          <input type="hidden" name="page_url" value="">
+          <input type="hidden" name="submitted_at" value="">
+          <input type="hidden" name="user_agent" value="">
+          <input type="hidden" name="utm_source" value="">
+          <input type="hidden" name="utm_medium" value="">
+          <input type="hidden" name="utm_campaign" value="">
+          <input type="hidden" name="ym_client_id" value="">
+          <div class="sr-only" aria-hidden="true">
+            <label for="company">Компания</label>
+            <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="consent-group">
+            <label class="consent-check" for="personal-data-consent-checkbox">
+              <input id="personal-data-consent-checkbox" name="personal_data_consent" type="checkbox" value="true" required>
+              <span>Я даю согласие на обработку персональных данных в соответствии с документом <a class="legal-link" href="#personal-data-consent" data-legal-link="personal-data-consent">«Согласие на обработку персональных данных»</a> и подтверждаю, что ознакомлен(а) с <a class="legal-link" href="#privacy" data-legal-link="privacy">«Политикой обработки персональных данных»</a>.</span>
+            </label>
+            <div class="consent-error" id="personal-consent-error" aria-live="polite"></div>
+            <label class="consent-check" for="marketing-consent-checkbox">
+              <input id="marketing-consent-checkbox" name="marketing_consent" type="checkbox" value="true">
+              <span>Я согласен(на) получать информационные и рекламные сообщения о сервисе, акциях и предложениях Груз-Сервис. Согласие можно отозвать в любой момент. <a class="legal-link" href="#marketing-consent" data-legal-link="marketing-consent">Согласие на получение рекламных и информационных сообщений</a>.</span>
+            </label>
+          </div>
+          <div class="form-actions">
+            <button class="btn" type="submit" disabled>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4 20-7Z"></path><path d="M22 2 11 13"></path></svg>
+              Отправить заявку
+            </button>
+            <a class="btn btn--outline js-goal-whatsapp" href="https://wa.me/79145690555?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%BD%D0%B0%D1%88%D1%91%D0%BB%20%D0%B2%D0%B0%D1%81%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%2C%20%D0%BD%D1%83%D0%B6%D0%BD%D0%BE..." target="_blank" rel="noopener">Написать в WhatsApp</a>
+            <span class="form-status" id="form-status" aria-live="polite"></span>
+          </div>
+          <p class="form-note">Нажимая кнопку “Отправить заявку”, вы отправляете данные для связи по вашему обращению. Мы не передаём данные третьим лицам без законного основания или вашего согласия.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="legal-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <section class="footer__col" aria-labelledby="footer-company">
+          <h2 id="footer-company">Груз-Сервис</h2>
+          <p>Специализированный ремонт коммерческого транспорта</p>
+          <p><strong>Адрес:</strong> Московская область, г. Балашиха, мкр. Саввино, ул. Промышленная, 44, бокс 10</p>
+          <p><strong>Режим работы:</strong> ежедневно с 10:00 до 20:00</p>
+        </section>
+
+        <section class="footer__col" aria-labelledby="footer-contacts">
+          <h3 id="footer-contacts">Контакты</h3>
+          <a class="js-goal-phone" href="tel:+79145690555">Телефон: +7 (914) 569-05-55</a>
+          <a class="js-goal-whatsapp" href="https://wa.me/79145690555?text=Здравствуйте,%20нашёл%20вас%20на%20сайте,%20нужно..." target="_blank" rel="noopener">WhatsApp</a>
+          <!-- TODO: заменить placeholder email на реальный адрес владельца сайта. -->
+          <a href="mailto:info@example.ru">Email: info@example.ru</a>
+          <!-- TODO: заменить legal@example.ru на реальный email для юридически значимых обращений. -->
+          <a href="mailto:legal@example.ru">Юр. email: legal@example.ru</a>
+          <a class="js-goal-route" href="https://yandex.ru/maps/?rtext=~55.7218,38.0242&rtt=auto&text=%D0%91%D0%B0%D0%BB%D0%B0%D1%88%D0%B8%D1%85%D0%B0%2C%20%D0%BC%D0%BA%D1%80.%20%D0%A1%D0%B0%D0%B2%D0%B2%D0%B8%D0%BD%D0%BE%2C%20%D1%83%D0%BB.%20%D0%9F%D1%80%D0%BE%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F%2C%2044" target="_blank" rel="noopener">Построить маршрут</a>
+        </section>
+
+        <section class="footer__col" aria-labelledby="footer-legal">
+          <h3 id="footer-legal">Правовая информация</h3>
+          <ul class="footer__links">
+            <li><a href="#privacy" data-legal-link="privacy">Политика обработки персональных данных</a></li>
+            <li><a href="#personal-data-consent" data-legal-link="personal-data-consent">Согласие на обработку персональных данных</a></li>
+            <li><a href="#terms" data-legal-link="terms">Пользовательское соглашение</a></li>
+            <li><a href="#offer" data-legal-link="offer">Условия оказания услуг и предварительной записи</a></li>
+            <li><a href="#payment-return" data-legal-link="payment-return">Условия оплаты и возврата</a></li>
+            <li><a href="#cookies" data-legal-link="cookies">Политика cookies</a></li>
+            <li><a href="#marketing-consent" data-legal-link="marketing-consent">Согласие на рекламные и информационные сообщения</a></li>
+            <li><a href="#requisites" data-legal-link="requisites">Реквизиты исполнителя</a></li>
+            <li><button class="legal-link" type="button" data-cookie-settings>Настройки cookies</button></li>
+          </ul>
+        </section>
+
+        <section class="footer__col" aria-labelledby="footer-requisites">
+          <h3 id="footer-requisites">Реквизиты</h3>
+          <ul class="footer__details">
+            <li><strong>Полное наименование исполнителя:</strong> [УКАЗАТЬ ООО / ИП]</li>
+            <li><strong>ИНН:</strong> [УКАЗАТЬ]</li>
+            <li><strong>ОГРН / ОГРНИП:</strong> [УКАЗАТЬ]</li>
+            <li><strong>Юридический адрес:</strong> [УКАЗАТЬ]</li>
+            <li><strong>Фактический адрес:</strong> Московская область, г. Балашиха, мкр. Саввино, ул. Промышленная, 44, бокс 10</li>
+            <li><strong>Email для юридически значимых обращений:</strong> [УКАЗАТЬ]</li>
+            <li><strong>Ответственный за обработку персональных данных:</strong> [УКАЗАТЬ ФИО/ДОЛЖНОСТЬ ИЛИ EMAIL]</li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2026 Груз-Сервис. Все права защищены.</p>
+        <p>Информация на сайте не является публичной офертой, если прямо не указано иное. Точные стоимость, сроки и состав работ определяются после диагностики и согласования с клиентом.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="legal-modal" id="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+    <div class="legal-modal__dialog" role="document">
+      <div class="legal-modal__top">
+        <h2 id="legal-modal-title">Правовая информация</h2>
+        <button class="legal-modal__close" type="button" aria-label="Закрыть" data-legal-close>×</button>
+      </div>
+      <div class="legal-doc" id="privacy" data-legal-title="Политика обработки персональных данных">
+        <p><strong>Редакция от 01.05.2026.</strong> Оператор персональных данных: [УКАЗАТЬ ПОЛНОЕ НАИМЕНОВАНИЕ], ИНН [УКАЗАТЬ ИНН], ОГРН/ОГРНИП [УКАЗАТЬ ОГРН/ОГРНИП], адрес: [УКАЗАТЬ ЮРИДИЧЕСКИЙ АДРЕС].</p>
+        <h3>Какие данные собираются</h3>
+        <ul><li>имя, телефон, текст сообщения о машине;</li><li>технические данные формы, дата и время отправки, IP-адрес, user-agent;</li><li>cookies, UTM-метки, ym_client_id при наличии согласия на аналитику.</li></ul>
+        <h3>Цели и основания обработки</h3>
+        <p>Данные используются для обработки заявки, обратного звонка, записи на диагностику, согласования ремонта, исполнения договора, ведения аналитики сайта и улучшения интерфейса. Правовые основания: согласие субъекта, подготовка и исполнение договора, законные обязанности оператора.</p>
+        <h3>Хранение, отзыв и уточнение</h3>
+        <p>Данные хранятся до достижения целей обработки, истечения сроков претензионного и бухгалтерского хранения или до отзыва согласия, если нет законных оснований продолжить хранение. Для отзыва, удаления или уточнения данных направьте запрос на [УКАЗАТЬ EMAIL].</p>
+        <h3>Передача третьим лицам</h3>
+        <p>Данные могут передаваться хостингу, CRM, почтовому сервису, Telegram-боту, Яндекс Метрике при согласии на аналитику, Robokassa при подключении онлайн-оплаты и иным подрядчикам по поручению оператора. Банковские карты на сайте Груз-Сервис не вводятся и не хранятся.</p>
+        <h3>Защита данных</h3>
+        <p>Оператор применяет организационные и технические меры защиты: ограничение доступа, защищённые каналы связи, пароли, резервное копирование и контроль подрядчиков.</p>
+      </div>
+      <div class="legal-doc" id="personal-data-consent" data-legal-title="Согласие на обработку персональных данных">
+        <p><strong>Редакция: pd-consent-v1-2026-05-01.</strong> Я, пользователь сайта, свободно, своей волей и в своём интересе даю согласие оператору [УКАЗАТЬ ПОЛНОЕ НАИМЕНОВАНИЕ], ИНН [УКАЗАТЬ ИНН], ОГРН/ОГРНИП [УКАЗАТЬ ОГРН/ОГРНИП], адрес [УКАЗАТЬ ЮРИДИЧЕСКИЙ АДРЕС], на обработку персональных данных.</p>
+        <h3>Перечень данных</h3>
+        <p>Имя, телефон, сообщение, технические данные формы, дата и время отправки, IP, user-agent, UTM-метки, ym_client_id при наличии.</p>
+        <h3>Цели обработки</h3>
+        <p>Связь по заявке, запись на диагностику, подготовка расчёта, согласование работ, исполнение договорённостей по ремонту и обслуживанию коммерческого транспорта.</p>
+        <h3>Действия с данными</h3>
+        <p>Сбор, запись, систематизация, накопление, хранение, уточнение, использование, передача по поручению, удаление и уничтожение.</p>
+        <h3>Срок и отзыв</h3>
+        <p>Согласие действует до достижения целей обработки или до отзыва. Отозвать согласие можно письмом на [УКАЗАТЬ EMAIL].</p>
+      </div>
+      <div class="legal-doc" id="terms" data-legal-title="Пользовательское соглашение">
+        <p>Сайт носит информационный характер. Цены «от» являются ориентировочными; окончательная стоимость, сроки и состав работ определяются после диагностики и согласования с клиентом.</p>
+        <p>Пользователь обязуется указывать достоверные данные и не использовать формы для спама, автоматических рассылок или передачи чужих контактов без оснований.</p>
+        <p>Администрация сайта не отвечает за сбои связи, хостинга, мессенджеров, почтовых сервисов, Яндекс Метрики, Robokassa и других внешних сервисов, если такие сбои находятся вне её контроля. Для обратной связи используйте телефон +7 (914) 569-05-55 или email [УКАЗАТЬ EMAIL].</p>
+      </div>
+      <div class="legal-doc" id="offer" data-legal-title="Условия оказания услуг и предварительной записи">
+        <p>Документ описывает условия предварительной записи, диагностики, ремонта и технического обслуживания коммерческого транспорта. Исполнитель: [УКАЗАТЬ ПОЛНОЕ НАИМЕНОВАНИЕ]. Заказчик: физическое лицо, ИП или юридическое лицо, обратившееся за услугой.</p>
+        <p>Предмет услуг: диагностика, ремонт МКПП, редукторов, мостов, двигателя, ходовой, тормозной системы и иных узлов. Запись возможна по телефону, через форму сайта или при личном визите.</p>
+        <p>Стоимость определяется после диагностики. Дополнительные работы выполняются только после согласования. Сроки зависят от сложности ремонта и наличия запчастей. Возможна предоплата, если требуется заказ агрегатов или деталей.</p>
+        <p>Гарантийные условия, выдача закрывающих документов для ИП/юрлиц, претензионный порядок и реквизиты исполнителя уточняются в заказ-наряде/акте. При подключении Robokassa этот документ может быть расширен до публичной оферты для онлайн-оплаты.</p>
+        <p><strong>TODO Robokassa:</strong> backend должен передавать корректные данные заказа/услуги и контакт клиента в платёжную систему. <strong>TODO 54-ФЗ:</strong> настроить онлайн-кассу/фискализацию и отправку электронного чека через платёжного провайдера или кассовый сервис.</p>
+      </div>
+      <div class="legal-doc" id="payment-return" data-legal-title="Условия оплаты и возврата">
+        <p>Возможные способы оплаты: наличные, карта, безналичный расчёт, банковский перевод, предоплата, онлайн-оплата через Robokassa при подключении.</p>
+        <p>При использовании Robokassa пользователь переходит на защищённую платёжную страницу Robokassa. Данные банковской карты не вводятся и не хранятся на сайте Груз-Сервис.</p>
+        <p>Для возврата клиент направляет обращение на [УКАЗАТЬ EMAIL] с номером заказа/заявки, датой оплаты, ФИО и контактами. Обращение рассматривается в разумный срок, обычно до 10 рабочих дней, если иной срок не установлен законом или договором. Возврат осуществляется тем же способом, которым была произведена оплата, если применимо.</p>
+      </div>
+      <div class="legal-doc" id="cookies" data-legal-title="Политика cookies">
+        <p>Сайт использует технические cookies, необходимые для корректной работы интерфейса. Также сайт может использовать аналитические cookies Яндекс Метрики для анализа посещаемости и улучшения интерфейса.</p>
+        <p>Пользователь может принять все cookies или оставить только необходимые. Отключить cookies можно в настройках браузера; часть функций сайта может работать ограниченно.</p>
+        <p>Подробнее об обработке данных см. <a class="legal-link" href="#privacy" data-legal-link="privacy">Политику обработки персональных данных</a>.</p>
+      </div>
+      <div class="legal-doc" id="marketing-consent" data-legal-title="Согласие на получение рекламных и информационных сообщений">
+        <p><strong>Редакция: marketing-v1-2026-05-01.</strong> Пользователь отдельно соглашается получать рекламные и информационные сообщения о сервисе, акциях и предложениях Груз-Сервис по телефону, SMS, email и мессенджерам.</p>
+        <p>Это согласие не является обязательным для отправки заявки. Отказ от рекламного согласия не влияет на возможность получить обратный звонок по конкретной заявке.</p>
+        <p>Отозвать согласие можно письмом на [УКАЗАТЬ EMAIL] или ответным сообщением с просьбой прекратить рассылку. Чекбокс этого согласия всегда отдельный и не отмечен заранее.</p>
+      </div>
+      <div class="legal-doc" id="requisites" data-legal-title="Реквизиты исполнителя">
+        <ul>
+          <li><strong>Полное наименование:</strong> [УКАЗАТЬ ПОЛНОЕ НАИМЕНОВАНИЕ]</li>
+          <li><strong>ИНН:</strong> [УКАЗАТЬ ИНН]</li>
+          <li><strong>ОГРН/ОГРНИП:</strong> [УКАЗАТЬ ОГРН/ОГРНИП]</li>
+          <li><strong>Юридический адрес:</strong> [УКАЗАТЬ ЮРИДИЧЕСКИЙ АДРЕС]</li>
+          <li><strong>Фактический адрес:</strong> Московская область, г. Балашиха, мкр. Саввино, ул. Промышленная, 44, бокс 10</li>
+          <li><strong>Банковские реквизиты:</strong> [УКАЗАТЬ ПРИ НЕОБХОДИМОСТИ]</li>
+          <li><strong>Email:</strong> [УКАЗАТЬ EMAIL]</li>
+          <li><strong>Телефон:</strong> +7 (914) 569-05-55</li>
+          <li><strong>Режим работы:</strong> ежедневно с 10:00 до 20:00</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Настройки cookies">
+    <p>Мы используем cookies и сервисы аналитики, чтобы сайт работал корректно и становился удобнее. Вы можете принять все cookies или оставить только необходимые. Подробнее — <a class="legal-link" href="#cookies" data-legal-link="cookies">в Политике cookies</a>.</p>
+    <div class="cookie-actions">
+      <button class="btn" type="button" data-cookie-accept-all>Принять все</button>
+      <button class="btn btn--outline" type="button" data-cookie-necessary>Только необходимые</button>
+      <button class="btn btn--outline" type="button" data-cookie-configure>Настроить</button>
+    </div>
+    <div class="cookie-settings">
+      <label class="consent-check" for="analytics-cookies">
+        <input id="analytics-cookies" type="checkbox" value="analytics">
+        <span>Разрешить аналитические cookies Яндекс Метрики для оценки заявок, звонков и маршрутов.</span>
+      </label>
+      <div class="cookie-actions">
+        <button class="btn" type="button" data-cookie-save>Сохранить настройки</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-sticky" aria-label="Быстрые действия">
+    <a class="btn js-goal-phone" href="tel:+79145690555">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9Z"></path></svg>
+      Позвонить
+    </a>
+    <a class="btn btn--outline js-goal-whatsapp" href="https://wa.me/79145690555?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%BD%D0%B0%D1%88%D1%91%D0%BB%20%D0%B2%D0%B0%D1%81%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%2C%20%D0%BD%D1%83%D0%B6%D0%BD%D0%BE..." target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <script>
+    const METRIKA_ID = 0; // TODO: заменить на номер счётчика Яндекс Метрики.
+    const COOKIE_STORAGE_KEY = "gruz_service_cookie_consent_v1";
+    const PERSONAL_DATA_CONSENT_VERSION = "pd-consent-v1-2026-05-01";
+    const PRIVACY_POLICY_VERSION = "privacy-v1-2026-05-01";
+    const MARKETING_CONSENT_VERSION = "marketing-v1-2026-05-01";
+    let metrikaLoaded = false;
+
+    function getCookieConsent() {
+      try {
+        return JSON.parse(localStorage.getItem(COOKIE_STORAGE_KEY) || "null");
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function saveCookieConsent(settings) {
+      localStorage.setItem(COOKIE_STORAGE_KEY, JSON.stringify({
+        necessary: true,
+        analytics: Boolean(settings.analytics),
+        saved_at: new Date().toISOString()
+      }));
+      applyCookieConsent();
+    }
+
+    function loadYandexMetrika() {
+      if (metrikaLoaded || !METRIKA_ID) return;
+      metrikaLoaded = true;
+      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+      ym(METRIKA_ID, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+    }
+
+    function applyCookieConsent() {
+      const consent = getCookieConsent();
+      const banner = document.getElementById("cookie-banner");
+      if (!consent) {
+        banner?.classList.add("is-visible");
+        return;
+      }
+      banner?.classList.remove("is-visible", "is-settings");
+      if (consent.analytics) {
+        loadYandexMetrika();
+      }
+    }
+
+    function reachGoal(goalName) {
+      if (typeof window.ym === "function" && METRIKA_ID) {
+        window.ym(METRIKA_ID, "reachGoal", goalName);
+      }
+    }
+
+    function getYmClientId() {
+      return new Promise((resolve) => {
+        if (typeof window.ym !== "function" || !METRIKA_ID) {
+          resolve("");
+          return;
+        }
+        try {
+          window.ym(METRIKA_ID, "getClientID", (clientId) => resolve(clientId || ""));
+        } catch (error) {
+          resolve("");
+        }
+      });
+    }
+
+    const legalModal = document.getElementById("legal-modal");
+    const legalTitle = document.getElementById("legal-modal-title");
+
+    function openLegalDoc(docId) {
+      const doc = document.getElementById(docId);
+      if (!doc || !doc.classList.contains("legal-doc")) return false;
+      document.querySelectorAll(".legal-doc").forEach((item) => item.classList.remove("is-active"));
+      doc.classList.add("is-active");
+      legalTitle.textContent = doc.dataset.legalTitle || "Правовая информация";
+      legalModal.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+      history.replaceState(null, "", `#${docId}`);
+      return true;
+    }
+
+    function closeLegalDoc() {
+      legalModal.classList.remove("is-open");
+      document.body.style.overflow = "";
+      if (location.hash && document.getElementById(location.hash.slice(1))?.classList.contains("legal-doc")) {
+        history.replaceState(null, "", location.pathname + location.search);
+      }
+    }
+
+    document.querySelectorAll("[data-legal-link]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        openLegalDoc(link.dataset.legalLink);
+      });
+    });
+
+    document.querySelector("[data-legal-close]")?.addEventListener("click", closeLegalDoc);
+    legalModal?.addEventListener("click", (event) => {
+      if (event.target === legalModal) closeLegalDoc();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && legalModal.classList.contains("is-open")) closeLegalDoc();
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      if (link.dataset.legalLink) return;
+      link.addEventListener("click", (event) => {
+        const target = document.querySelector(link.getAttribute("href"));
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    document.querySelectorAll(".js-goal-phone").forEach((link) => {
+      link.addEventListener("click", () => reachGoal("click_phone"));
+    });
+
+    document.querySelectorAll(".js-goal-route").forEach((link) => {
+      link.addEventListener("click", () => reachGoal("click_route"));
+    });
+
+    document.querySelectorAll(".js-goal-whatsapp").forEach((link) => {
+      link.addEventListener("click", () => reachGoal("click_whatsapp"));
+    });
+
+    const reveals = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach((item) => observer.observe(item));
+    } else {
+      reveals.forEach((item) => item.classList.add("is-visible"));
+    }
+
+    document.querySelector("[data-cookie-accept-all]")?.addEventListener("click", () => saveCookieConsent({ analytics: true }));
+    document.querySelector("[data-cookie-necessary]")?.addEventListener("click", () => saveCookieConsent({ analytics: false }));
+    document.querySelector("[data-cookie-configure]")?.addEventListener("click", () => {
+      document.getElementById("cookie-banner")?.classList.add("is-settings");
+    });
+    document.querySelector("[data-cookie-save]")?.addEventListener("click", () => {
+      saveCookieConsent({ analytics: document.getElementById("analytics-cookies")?.checked });
+    });
+    document.querySelectorAll("[data-cookie-settings]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const consent = getCookieConsent();
+        const checkbox = document.getElementById("analytics-cookies");
+        if (checkbox) checkbox.checked = Boolean(consent?.analytics);
+        document.getElementById("cookie-banner")?.classList.add("is-visible", "is-settings");
+      });
+    });
+    applyCookieConsent();
+
+    const form = document.getElementById("lead-form");
+    const status = document.getElementById("form-status");
+    const personalConsent = document.getElementById("personal-data-consent-checkbox");
+    const consentError = document.getElementById("personal-consent-error");
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    function syncConsentState(showError = false) {
+      const hasConsent = personalConsent.checked;
+      submitButton.disabled = !hasConsent;
+      consentError.textContent = !hasConsent && showError
+        ? "Чтобы отправить заявку, необходимо дать согласие на обработку персональных данных"
+        : "";
+    }
+
+    personalConsent.addEventListener("change", () => syncConsentState(false));
+    syncConsentState(false);
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!personalConsent.checked) {
+        syncConsentState(true);
+        status.textContent = "";
+        return;
+      }
+
+      status.textContent = "Отправляем...";
+      submitButton.disabled = true;
+
+      try {
+        const params = new URLSearchParams(window.location.search);
+        form.elements.page_url.value = window.location.href;
+        form.elements.submitted_at.value = new Date().toISOString();
+        form.elements.user_agent.value = navigator.userAgent;
+        form.elements.utm_source.value = params.get("utm_source") || "";
+        form.elements.utm_medium.value = params.get("utm_medium") || "";
+        form.elements.utm_campaign.value = params.get("utm_campaign") || "";
+        form.elements.ym_client_id.value = await getYmClientId();
+
+        const formData = new FormData(form);
+        formData.set("personal_data_consent", "true");
+        formData.set("personal_data_consent_text_version", PERSONAL_DATA_CONSENT_VERSION);
+        formData.set("privacy_policy_version", PRIVACY_POLICY_VERSION);
+        if (form.elements.marketing_consent.checked) {
+          formData.set("marketing_consent", "true");
+          formData.set("marketing_consent_version", MARKETING_CONSENT_VERSION);
+        } else {
+          formData.set("marketing_consent", "false");
+        }
+
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: { "Accept": "application/json" }
+        });
+
+        const payload = await response.json().catch(() => ({}));
+
+        if (!response.ok || !payload.ok) {
+          throw new Error(payload.message || "Не удалось отправить заявку");
+        }
+
+        reachGoal("submit_form");
+        form.reset();
+        syncConsentState(false);
+        status.textContent = "Заявка отправлена. Мастер скоро перезвонит.";
+      } catch (error) {
+        status.textContent = `${error.message}. Позвоните мастеру: +7 (914) 569-05-55.`;
+      } finally {
+        syncConsentState(false);
+      }
+    });
+
+    if (location.hash) {
+      openLegalDoc(location.hash.slice(1));
+    }
+  </script>
+</body>
+</html>

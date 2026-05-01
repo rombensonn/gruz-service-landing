@@ -1,0 +1,21 @@
+{
+  "name": "gruz-service-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Лендинг и backend для заявок автосервиса Груз-Сервис.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "nodemailer": "^6.9.16"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
