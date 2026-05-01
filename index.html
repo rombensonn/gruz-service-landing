@@ -2372,13 +2372,13 @@
           <div class="consent-group">
             <label class="consent-check" for="personal-data-consent-checkbox">
               <input id="personal-data-consent-checkbox" name="personal_data_consent" type="checkbox" value="true" required>
-              <span>Я даю согласие на обработку персональных данных в соответствии с документом <a class="legal-link" href="#personal-data-consent" data-legal-link="personal-data-consent">«Согласие на обработку персональных данных»</a> и подтверждаю, что ознакомлен(а) с <a class="legal-link" href="#privacy" data-legal-link="privacy">«Политикой обработки персональных данных»</a>.</span>
+              <span>Я даю согласие на обработку персональных данных. <a class="legal-link" href="#personal-data-consent" data-legal-link="personal-data-consent">«Согласие на обработку персональных данных»</a>.</span>
+            </label>
+            <label class="consent-check" for="privacy-policy-accepted-checkbox">
+              <input id="privacy-policy-accepted-checkbox" name="privacy_policy_accepted" type="checkbox" value="true" required>
+              <span>Я подтверждаю, что ознакомлен(а) с Политикой обработки персональных данных. <a class="legal-link" href="#privacy" data-legal-link="privacy">«Политика обработки персональных данных»</a>.</span>
             </label>
             <div class="consent-error" id="personal-consent-error" aria-live="polite"></div>
-            <label class="consent-check" for="marketing-consent-checkbox">
-              <input id="marketing-consent-checkbox" name="marketing_consent" type="checkbox" value="true">
-              <span>Я согласен(на) получать информационные и рекламные сообщения о сервисе, акциях и предложениях Груз-Сервис. Согласие можно отозвать в любой момент. <a class="legal-link" href="#marketing-consent" data-legal-link="marketing-consent">Согласие на получение рекламных и информационных сообщений</a>.</span>
-            </label>
           </div>
           <div class="form-actions">
             <button class="btn" type="submit" disabled>
@@ -2424,7 +2424,6 @@
             <li><a href="#offer" data-legal-link="offer">Условия оказания услуг и предварительной записи</a></li>
             <li><a href="#payment-return" data-legal-link="payment-return">Условия оплаты и возврата</a></li>
             <li><a href="#cookies" data-legal-link="cookies">Политика cookies</a></li>
-            <li><a href="#marketing-consent" data-legal-link="marketing-consent">Согласие на рекламные и информационные сообщения</a></li>
             <li><a href="#requisites" data-legal-link="requisites">Реквизиты исполнителя</a></li>
             <li><button class="legal-link" type="button" data-cookie-settings>Настройки cookies</button></li>
           </ul>
@@ -2503,11 +2502,6 @@
         <p>Пользователь может принять все cookies или оставить только необходимые. Отключить cookies можно в настройках браузера; часть функций сайта может работать ограниченно.</p>
         <p>Подробнее об обработке данных см. <a class="legal-link" href="#privacy" data-legal-link="privacy">Политику обработки персональных данных</a>.</p>
       </div>
-      <div class="legal-doc" id="marketing-consent" data-legal-title="Согласие на получение рекламных и информационных сообщений">
-        <p><strong>Редакция: marketing-v1-2026-05-01.</strong> Пользователь отдельно соглашается получать рекламные и информационные сообщения о сервисе, акциях и предложениях Груз-Сервис по телефону, SMS, email и мессенджерам.</p>
-        <p>Это согласие не является обязательным для отправки заявки. Отказ от рекламного согласия не влияет на возможность получить обратный звонок по конкретной заявке.</p>
-        <p>Отозвать согласие можно письмом на [УКАЗАТЬ EMAIL] или ответным сообщением с просьбой прекратить рассылку. Чекбокс этого согласия всегда отдельный и не отмечен заранее.</p>
-      </div>
       <div class="legal-doc" id="requisites" data-legal-title="Реквизиты исполнителя">
         <ul>
           <li><strong>Полное наименование:</strong> [УКАЗАТЬ ПОЛНОЕ НАИМЕНОВАНИЕ]</li>
@@ -2555,7 +2549,6 @@
     const COOKIE_STORAGE_KEY = "gruz_service_cookie_consent_v1";
     const PERSONAL_DATA_CONSENT_VERSION = "pd-consent-v1-2026-05-01";
     const PRIVACY_POLICY_VERSION = "privacy-v1-2026-05-01";
-    const MARKETING_CONSENT_VERSION = "marketing-v1-2026-05-01";
     let metrikaLoaded = false;
 
     function getCookieConsent() {
@@ -2726,24 +2719,26 @@
     const form = document.getElementById("lead-form");
     const status = document.getElementById("form-status");
     const personalConsent = document.getElementById("personal-data-consent-checkbox");
+    const privacyPolicyAccepted = document.getElementById("privacy-policy-accepted-checkbox");
     const consentError = document.getElementById("personal-consent-error");
     const submitButton = form.querySelector('button[type="submit"]');
 
     function syncConsentState(showError = false) {
-      const hasConsent = personalConsent.checked;
-      submitButton.disabled = !hasConsent;
-      consentError.textContent = !hasConsent && showError
-        ? "Чтобы отправить заявку, необходимо дать согласие на обработку персональных данных"
+      const hasRequiredConsents = personalConsent.checked && privacyPolicyAccepted.checked;
+      submitButton.disabled = !hasRequiredConsents;
+      consentError.textContent = !hasRequiredConsents && showError
+        ? "Для отправки заявки необходимо дать согласие на обработку персональных данных и подтвердить ознакомление с политикой обработки персональных данных"
         : "";
     }
 
     personalConsent.addEventListener("change", () => syncConsentState(false));
+    privacyPolicyAccepted.addEventListener("change", () => syncConsentState(false));
     syncConsentState(false);
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      if (!personalConsent.checked) {
+      if (!personalConsent.checked || !privacyPolicyAccepted.checked) {
         syncConsentState(true);
         status.textContent = "";
         return;
@@ -2764,14 +2759,9 @@
 
         const formData = new FormData(form);
         formData.set("personal_data_consent", "true");
+        formData.set("privacy_policy_accepted", "true");
         formData.set("personal_data_consent_text_version", PERSONAL_DATA_CONSENT_VERSION);
         formData.set("privacy_policy_version", PRIVACY_POLICY_VERSION);
-        if (form.elements.marketing_consent.checked) {
-          formData.set("marketing_consent", "true");
-          formData.set("marketing_consent_version", MARKETING_CONSENT_VERSION);
-        } else {
-          formData.set("marketing_consent", "false");
-        }
 
         const response = await fetch(form.action, {
           method: "POST",
