@@ -1612,11 +1612,13 @@
 
     .reveal {
       opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.45s ease, transform 0.45s ease;
+      transform: translateY(22px);
+      will-change: opacity, transform;
     }
 
-    .reveal.is-visible {
+    .motion-ready .reveal.is-visible,
+    .no-motion .reveal,
+    .no-js .reveal {
       opacity: 1;
       transform: translateY(0);
     }
@@ -2034,7 +2036,7 @@
   }
   </script>
 </head>
-<body>
+<body class="no-js">
   <a class="skip-link" href="#main">Перейти к содержимому</a>
 
   <header class="site-header" aria-label="Верхняя навигация">
@@ -2346,7 +2348,7 @@
                   <span>10:00–20:00</span>
                   <span>Парковка</span>
                 </div>
-                <button class="btn" type="button" data-load-map>Показать Яндекс Карту</button>
+                <button class="btn" type="button" data-load-map>Показать на Яндекс Картах</button>
               </div>
               <iframe title="Карточка организации Груз-Сервис на Яндекс Картах" data-src="https://yandex.com/map-widget/v1/?ll=38.024923%2C55.723448&mode=search&oid=29757131229&ol=biz&z=19" loading="lazy" referrerpolicy="no-referrer-when-downgrade" hidden></iframe>
             </div>
@@ -2631,7 +2633,54 @@
     <a class="btn btn--outline js-goal-whatsapp" href="https://wa.me/79145690555?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%BD%D0%B0%D1%88%D1%91%D0%BB%20%D0%B2%D0%B0%D1%81%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%2C%20%D0%BD%D1%83%D0%B6%D0%BD%D0%BE..." target="_blank" rel="noopener">WhatsApp</a>
   </div>
 
-  <script>
+  <script type="module">
+    import { animate, inView, stagger } from "https://cdn.jsdelivr.net/npm/motion@12.23.24/+esm";
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.body.classList.remove("no-js");
+    document.body.classList.add(reduceMotion ? "no-motion" : "motion-ready");
+
+    if (!reduceMotion) {
+      animate(".hero__content > *", { opacity: [0, 1], y: [24, 0] }, { duration: 0.72, delay: stagger(0.08), easing: [0.22, 1, 0.36, 1] });
+
+      inView(".reveal", (element) => {
+        element.classList.add("is-visible");
+        animate(element, { opacity: [0, 1], y: [22, 0] }, { duration: 0.62, easing: [0.22, 1, 0.36, 1] });
+      }, { margin: "0px 0px -12% 0px", amount: 0.12 });
+
+      inView(".service-focus, .grid-3, .steps, .brands-grid, .faq-list, .info-list", (group) => {
+        const children = group.querySelectorAll(":scope > *");
+        animate(children, { opacity: [0, 1], y: [18, 0], scale: [0.985, 1] }, { duration: 0.5, delay: stagger(0.045), easing: [0.22, 1, 0.36, 1] });
+      }, { amount: 0.18 });
+
+      document.querySelectorAll(".btn").forEach((button) => {
+        button.addEventListener("pointerenter", () => animate(button, { y: -2, scale: 1.015 }, { duration: 0.18 }));
+        button.addEventListener("pointerleave", () => animate(button, { y: 0, scale: 1 }, { duration: 0.18 }));
+        button.addEventListener("pointerdown", () => animate(button, { scale: 0.97 }, { duration: 0.08 }));
+        button.addEventListener("pointerup", () => animate(button, { scale: 1.015 }, { duration: 0.12 }));
+      });
+
+      document.querySelectorAll(".card, .service-card, .review-card, .info-item, .faq-item, .brand-tile").forEach((card) => {
+        card.addEventListener("pointerenter", () => animate(card, { y: -4 }, { duration: 0.22 }));
+        card.addEventListener("pointerleave", () => animate(card, { y: 0 }, { duration: 0.22 }));
+      });
+    } else {
+      document.querySelectorAll(".reveal").forEach((item) => item.classList.add("is-visible"));
+    }
+
+    window.GruzMotion = {
+      animateMapLoad(iframe, placeholder) {
+        if (reduceMotion || !placeholder) {
+          placeholder?.remove();
+          return;
+        }
+        animate(placeholder, { opacity: [1, 0], scale: [1, 0.985] }, { duration: 0.24 }).finished.then(() => {
+          placeholder.remove();
+          animate(iframe, { opacity: [0, 1], scale: [0.985, 1] }, { duration: 0.42, easing: [0.22, 1, 0.36, 1] });
+        });
+      }
+    };
+
     const METRIKA_ID = 0; // TODO: заменить на номер счётчика Яндекс Метрики.
     const COOKIE_STORAGE_KEY = "gruz_service_cookie_consent_v1";
     const PERSONAL_DATA_CONSENT_VERSION = "pd-consent-v1-2026-05-01";
@@ -2765,25 +2814,14 @@
       if (!iframe || iframe.src) return;
       iframe.src = iframe.dataset.src;
       iframe.hidden = false;
-      placeholder?.remove();
+      if (window.GruzMotion?.animateMapLoad) {
+        window.GruzMotion.animateMapLoad(iframe, placeholder);
+      } else {
+        placeholder?.remove();
+      }
     }
 
     document.querySelector("[data-load-map]")?.addEventListener("click", loadMap);
-
-    const reveals = document.querySelectorAll(".reveal");
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      reveals.forEach((item) => observer.observe(item));
-    } else {
-      reveals.forEach((item) => item.classList.add("is-visible"));
-    }
 
     document.querySelector("[data-cookie-accept-all]")?.addEventListener("click", () => saveCookieConsent({ analytics: true }));
     document.querySelector("[data-cookie-necessary]")?.addEventListener("click", () => saveCookieConsent({ analytics: false }));
