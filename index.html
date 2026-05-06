@@ -757,6 +757,11 @@
     }
 
     .brand-tile--popular {
+      min-height: 102px;
+      align-content: center;
+      justify-items: center;
+      gap: 6px;
+      padding: 14px 12px;
       border-color: rgba(255, 184, 0, 0.58);
       background:
         linear-gradient(145deg, rgba(255, 107, 26, 0.22), rgba(255, 184, 0, 0.08)),
@@ -765,9 +770,10 @@
     }
 
     .brand-tile__badge {
-      position: absolute;
-      top: 8px;
-      right: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
       padding: 4px 7px;
       border-radius: 5px;
       color: var(--black);
@@ -776,6 +782,12 @@
       font-weight: 900;
       line-height: 1;
       text-transform: uppercase;
+    }
+
+    .brand-tile__name {
+      display: block;
+      color: var(--text);
+      line-height: 1.15;
     }
 
     .brand-tile small {
@@ -2423,7 +2435,8 @@
         <div class="brands-grid reveal" aria-label="Список техники">
           <div class="brand-tile brand-tile--popular">
             <span class="brand-tile__badge">Популярно</span>
-            Газель<small>ГАЗон · Соболь</small>
+            <span class="brand-tile__name">Газель</span>
+            <small>ГАЗон · Соболь</small>
           </div>
           <div class="brand-tile">УАЗ</div>
           <div class="brand-tile">ISUZU</div>
@@ -2434,13 +2447,14 @@
           <div class="brand-tile">Valdai</div>
           <div class="brand-tile brand-tile--popular">
             <span class="brand-tile__badge">Популярно</span>
-            ГАЗон Next
+            <span class="brand-tile__name">ГАЗон Next</span>
           </div>
           <div class="brand-tile">IVECO Daily</div>
           <div class="brand-tile">Легковые авто</div>
           <div class="brand-tile brand-tile--popular">
             <span class="brand-tile__badge">Популярно</span>
-            Ford<small>Transit · Cargo</small>
+            <span class="brand-tile__name">Ford</span>
+            <small>Transit · Cargo</small>
           </div>
         </div>
         <p class="note reveal">Если вашей марки нет в списке — позвоните, скорее всего тоже возьмёмся. Главное — это коммерческая техника или дизель.</p>
